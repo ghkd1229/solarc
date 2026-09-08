@@ -81,7 +81,7 @@ function resultMarkup(idx, name, slogan, a) {
     'What matters most while you’re in the sun?',
     '취향을 바탕으로 제안하는 스타일',
   ];
-  let page = 0,
+  let page = 1,
     answers = [50, 50, null, 50, null],
     timer = null;
   const labels = [];
@@ -117,7 +117,7 @@ function resultMarkup(idx, name, slogan, a) {
           : 'YOUR SUN PERSONALITY';
     root.querySelector('#count').textContent =
       page < 2 ? 'INTRO' : page < 7 ? `${page - 1} / 5` : 'RESULT';
-    root.querySelector('#back').disabled = page === 0;
+    root.querySelector('#back').disabled = page === 1;
     root.querySelector('#next').textContent =
       page === 0
         ? '나의 햇빛 찾기 →'
@@ -131,9 +131,6 @@ function resultMarkup(idx, name, slogan, a) {
     root.querySelector('#next').disabled =
       (page === 4 || page === 6) && answers[page - 2] === null;
     root.querySelector('#selection').textContent = '';
-    if (page === 0)
-      stage.innerHTML =
-        '<div class="sun">SOLARC</div><span>빛 · 그림자 · 나의 취향</span>';
     if (page === 1)
       stage.innerHTML =
         '<div class="hero-brand"><div class="hero-tagline"><span>Find Your</span><span>Sun Style</span></div><img class="hero-logo" src="/assets/solarc-logo.svg" alt="Solarc" width="731" height="317"></div>';
@@ -293,12 +290,12 @@ function resultMarkup(idx, name, slogan, a) {
     }
   }
   root.querySelector('#back').onclick = () => {
-    page = Math.max(0, page - 1);
+    page = Math.max(1, page - 1);
     render();
   };
   root.querySelector('#next').onclick = () => {
     if (page === 7) {
-      page = 0;
+      page = 1;
       answers = [50, 50, null, 50, null];
     } else page++;
     render();

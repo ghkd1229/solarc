@@ -379,12 +379,11 @@ body {
 #sun-wire[data-page='1'] .screen {
   position: relative;
   display: block;
-  min-height: 620px;
+  min-height: 480px;
   height: 100svh;
   padding: 0;
   overflow: hidden;
-  background: #4d594e url('/assets/hero-sunset.png') center center / cover
-    no-repeat;
+  background: #4d594e;
 }
 #sun-wire[data-page='1'] header,
 #sun-wire[data-page='1'] .copy,
@@ -419,7 +418,7 @@ body {
   width: 100%;
   height: auto;
   aspect-ratio: 731 / 316.214;
-  margin-top: 5px;
+  margin-top: 0;
 }
 #sun-wire[data-page='1'] footer {
   position: absolute;
@@ -473,4 +472,17 @@ body {
     height: 54px;
     font-size: 19px;
   }
+}
+.hero-background {
+  display: none;
+}
+#sun-wire[data-page='1'] .hero-background {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
 }
