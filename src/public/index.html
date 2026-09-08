@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SOLARC — 태닝 성향 테스트</title>
+    <meta
+      name="description"
+      content="다섯 번의 선택으로 발견하는 나만의 햇빛 취향. SOLARC 태닝 성향 테스트."
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="sun-wire">
+      <nav aria-label="화면 선택"></nav>
+      <section class="screen">
+        <header>
+          <span>SOLARC / FIND YOUR SUN</span><span id="count">INTRO</span>
+        </header>
+        <div class="copy">
+          <small id="eyebrow">TANNING PERSONALITY TEST</small>
+          <h2 id="title">당신의 햇빛에는<br />어떤 취향이 있나요?</h2>
+          <p id="subtitle">다섯 번의 선택으로 발견하는 나만의 선 라이프.</p>
+        </div>
+        <div id="stage"></div>
+        <footer>
+          <button id="back">이전</button
+          ><span id="selection" aria-live="polite"></span
+          ><button id="next">나의 햇빛 찾기 →</button>
+        </footer>
+      </section>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -11,7 +11,9 @@ pnpm install
 pnpm start:dev
 ```
 
-http://localhost:3000 에서 `Hello World!` 응답을 확인할 수 있습니다.
+http://localhost:3000 에서 SOLARC 태닝 성향 테스트를 이용할 수 있습니다.
+랜딩, 히어로, 질문 5개와 별도 결과 화면으로 구성되어 있습니다.
+테스트는 피부 진단이 아닌 취향 분류입니다. 기본 API는 `/api/hello`에 있습니다.
 포트는 `PORT` 환경변수로 변경할 수 있으며 기본값은 3000입니다.
 
 ## 검증 및 빌드
