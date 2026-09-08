@@ -29,4 +29,14 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('assets/hero-sunset.png')
+  getHeroBackground(@Res() response: FileResponse): void {
+    response.sendFile(join(__dirname, 'public', 'assets', 'hero-sunset.png'));
+  }
+
+  @Get('assets/solarc-logo.svg')
+  getHeroLogo(@Res() response: FileResponse): void {
+    response.sendFile(join(__dirname, 'public', 'assets', 'solarc-logo.svg'));
+  }
 }

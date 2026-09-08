@@ -122,7 +122,7 @@ function resultMarkup(idx, name, slogan, a) {
       page === 0
         ? '나의 햇빛 찾기 →'
         : page === 1
-          ? '테스트 시작 →'
+          ? 'FOLLOW THE SUN'
           : page === 6
             ? '결과 보기 →'
             : page === 7
@@ -136,7 +136,7 @@ function resultMarkup(idx, name, slogan, a) {
         '<div class="sun">SOLARC</div><span>빛 · 그림자 · 나의 취향</span>';
     if (page === 1)
       stage.innerHTML =
-        '<div class="sun">5 QUESTIONS</div><div class="labels"><span>01 빛의 순간</span><span>02 나의 리듬</span><span>03 나의 유형</span></div><small>피부 진단이 아닌 취향 테스트입니다.</small>';
+        '<div class="hero-brand"><div class="hero-tagline"><span>Find Your</span><span>Sun Style</span></div><img class="hero-logo" src="/assets/solarc-logo.svg" alt="Solarc" width="731" height="317"></div>';
     if (page === 2) {
       stage.innerHTML =
         '<div class="horizon"><div class="sun">SUN</div></div><input aria-label="햇빛 시간대" type="range" min="0" max="100" style="width:100%"><div class="labels"><span>MORNING</span><span>MIDDAY</span><span>SUNSET</span></div>';

@@ -370,3 +370,107 @@ body {
     gap: 8px;
   }
 }
+
+/* Figma 1196:4 — full-bleed hero, 1920 × 1080 reference. */
+#sun-wire[data-page='1'] {
+  max-width: none;
+  color: #fff6b2;
+}
+#sun-wire[data-page='1'] .screen {
+  position: relative;
+  display: block;
+  min-height: 620px;
+  height: 100svh;
+  padding: 0;
+  overflow: hidden;
+  background: #4d594e url('/assets/hero-sunset.png') center center / cover
+    no-repeat;
+}
+#sun-wire[data-page='1'] header,
+#sun-wire[data-page='1'] .copy,
+#sun-wire[data-page='1'] #back,
+#sun-wire[data-page='1'] #selection {
+  display: none;
+}
+#sun-wire[data-page='1'] #stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  min-height: 0;
+  padding: 0;
+}
+#sun-wire .hero-brand {
+  position: absolute;
+  top: 25.37%;
+  left: 50%;
+  width: min(38.073vw, 731px);
+  transform: translateX(-50%);
+}
+#sun-wire .hero-tagline {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Fustat', Arial, sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.302vw, 25px);
+  line-height: 1.3;
+}
+#sun-wire .hero-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 731 / 316.214;
+  margin-top: 5px;
+}
+#sun-wire[data-page='1'] footer {
+  position: absolute;
+  top: 65.74%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(26.354vw, 506px);
+  border: 0;
+  padding: 0;
+  display: block;
+}
+#sun-wire[data-page='1'] #next {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  height: clamp(44px, 4.219vw, 81px);
+  padding: 0 15px;
+  border: 1px solid rgba(255, 246, 178, 0.22);
+  border-radius: 86px;
+  background: rgba(255, 246, 178, 0.17);
+  color: #fff6b2;
+  font-family: 'Fustat', Arial, sans-serif;
+  font-weight: 600;
+  font-size: clamp(16px, 1.823vw, 35px);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  transition: background 0.2s;
+}
+#sun-wire[data-page='1'] #next:hover {
+  background: rgba(255, 246, 178, 0.3);
+}
+@media (max-width: 700px) {
+  #sun-wire[data-page='1'] .screen {
+    min-height: 540px;
+    background-position: 49% center;
+  }
+  #sun-wire .hero-brand {
+    width: 82%;
+    max-width: 430px;
+    top: 27%;
+  }
+  #sun-wire .hero-tagline {
+    font-size: 15px;
+  }
+  #sun-wire[data-page='1'] footer {
+    width: 70%;
+    max-width: 330px;
+    top: 64%;
+  }
+  #sun-wire[data-page='1'] #next {
+    height: 54px;
+    font-size: 19px;
+  }
+}
