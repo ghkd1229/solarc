@@ -39,4 +39,9 @@ export class AppController {
   getHeroLogo(@Res() response: FileResponse): void {
     response.sendFile(join(__dirname, 'public', 'assets', 'solarc-logo.svg'));
   }
+
+  @Get('assets/textures.png')
+  getTextures(@Res() response: FileResponse): void {
+    response.sendFile(join(__dirname, 'public', 'assets', 'textures.png'));
+  }
 }

@@ -495,3 +495,284 @@ body {
   object-position: center;
   pointer-events: none;
 }
+/* Figma questionnaire screens 1195:81, 1273:22, 1279:138 */
+#sun-wire.figma-question {
+  max-width: none;
+  --paper: #fff;
+  --ink: #ff6e53;
+  --shade: #ff6e53;
+  font-family: 'Fustat', Arial, 'Malgun Gothic', sans-serif;
+}
+#sun-wire.figma-question .screen {
+  padding: 7.5vh 10% 28px;
+  min-height: 100svh;
+  position: relative;
+}
+#sun-wire.figma-question header {
+  position: absolute;
+  top: 50%;
+  left: 3.125%;
+  width: 93.75%;
+  border: 0;
+  padding: 0;
+  color: #af9893;
+  font-size: clamp(12px, 1.302vw, 25px);
+  letter-spacing: 0;
+  pointer-events: none;
+}
+#sun-wire.figma-question #count {
+  color: #ff6e53;
+}
+#sun-wire.figma-question #count span {
+  color: #af9893;
+}
+#sun-wire.figma-question .copy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 7px;
+  padding: 0;
+  font-size: clamp(17px, 1.667vw, 32px);
+  line-height: 1.55;
+  color: #ff6e53;
+}
+#sun-wire.figma-question #eyebrow {
+  font-size: inherit;
+  font-weight: 700;
+  order: 0;
+}
+#sun-wire.figma-question #subtitle {
+  font-size: inherit;
+  font-weight: 600;
+  order: 1;
+  margin: 0;
+  opacity: 1;
+  line-height: 1.55;
+}
+#sun-wire.figma-question #title {
+  font-size: inherit;
+  font-weight: 600;
+  order: 2;
+  width: 100%;
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+#sun-wire[data-page='3'] #eyebrow,
+#sun-wire[data-page='4'] #eyebrow {
+  width: 100%;
+}
+#sun-wire.figma-question #stage {
+  padding: 25px 0;
+  min-height: 0;
+  gap: 24px;
+  justify-content: flex-end;
+}
+#sun-wire.figma-question footer {
+  border: 0;
+  padding: 12px 0 0;
+  margin-top: 25px;
+  font-size: 13px;
+}
+#sun-wire.figma-question #next {
+  background: #ff6e53;
+  color: white;
+  border: 0;
+}
+#sun-wire.figma-question .labels {
+  max-width: none;
+  width: 100%;
+  color: #ff6e53;
+  font-size: clamp(13px, 1.667vw, 32px);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: 0;
+  text-align: center;
+}
+#sun-wire[data-page='2'] #stage,
+#sun-wire[data-page='3'] #stage {
+  width: 78%;
+  align-self: center;
+}
+#sun-wire.figma-question input[type='range'] {
+  appearance: none;
+  -webkit-appearance: none;
+  max-width: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 12px;
+  background: #e8e8e8;
+  cursor: grab;
+  margin: 12px 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+#sun-wire.figma-question input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 0;
+  background: #ff6e53;
+}
+#sun-wire.figma-question input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 0;
+  background: #ff6e53;
+}
+#sun-wire[data-page='2'] .horizon {
+  width: 100%;
+  max-width: none;
+  border: 0;
+  border-radius: 50% 50% 0 0;
+  flex: 1;
+  min-height: 180px;
+  height: auto;
+  background: linear-gradient(to top, var(--sky), #ffffff 90%);
+}
+#sun-wire[data-page='2'] .horizon .sun {
+  background: #ff6e53;
+  width: 80px;
+  height: 80px;
+}
+#sun-wire[data-page='3'] .tone {
+  flex: 1;
+  min-height: 200px;
+  justify-content: center;
+}
+#sun-wire[data-page='3'] .arm {
+  height: clamp(160px, 24vh, 280px);
+  width: clamp(90px, 9vw, 160px);
+  border: 0;
+  box-shadow: inset -15px 0 26px #61341930;
+}
+#sun-wire[data-page='3'] .labels {
+  color: #5c0e00;
+}
+#sun-wire[data-page='4'] .screen {
+  padding-left: 10%;
+  padding-right: 6%;
+}
+#sun-wire[data-page='4'] #stage {
+  display: block;
+  padding: 0;
+  margin-top: clamp(48px, 10.83vh, 117px);
+}
+#sun-wire .texture-choices {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 4vw, 80px);
+  align-items: start;
+}
+#sun-wire .texture-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  border: 0;
+  background: transparent;
+  color: #5c0e00;
+  padding: 0;
+  transform-origin: center 28%;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s;
+  font-family: inherit;
+}
+#sun-wire .texture-caption {
+  font-size: clamp(12px, 1.25vw, 24px);
+  line-height: 1.55;
+  font-weight: 600;
+  min-height: 3.1em;
+}
+#sun-wire .texture-crop {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: clamp(52px, 5.68vw, 109px);
+  aspect-ratio: 109 / 654;
+}
+#sun-wire .texture-crop img {
+  position: absolute;
+  max-width: none;
+  width: 619.29%;
+  height: 121.71%;
+  top: -21.71%;
+  left: -45.88%;
+}
+#sun-wire .texture-1 img {
+  left: -194.61%;
+}
+#sun-wire .texture-2 img {
+  left: -330.26%;
+}
+#sun-wire .texture-3 {
+  width: clamp(60px, 6.56vw, 126px);
+  aspect-ratio: 126 / 659;
+}
+#sun-wire .texture-3 img {
+  width: 535.73%;
+  height: 120.79%;
+  top: -20.72%;
+  left: -404.46%;
+}
+#sun-wire .texture-choice:hover,
+#sun-wire .texture-choice:focus-visible {
+  transform: scale(1.045);
+}
+#sun-wire .texture-choice[aria-pressed='true'] {
+  border: 0;
+  transform: scale(1.045);
+  color: #ff6e53;
+}
+#sun-wire .texture-choice[aria-pressed='true'] .texture-caption {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+@media (max-width: 700px) {
+  #sun-wire.figma-question .screen {
+    padding: 74px 22px 20px;
+  }
+  #sun-wire.figma-question header {
+    top: 25px;
+    left: 22px;
+    width: calc(100% - 44px);
+    font-size: 13px;
+  }
+  #sun-wire.figma-question .copy {
+    font-size: 17px;
+  }
+  #sun-wire[data-page='2'] #stage,
+  #sun-wire[data-page='3'] #stage {
+    width: 100%;
+  }
+  #sun-wire.figma-question .labels {
+    font-size: 12px;
+    gap: 8px;
+  }
+  #sun-wire[data-page='4'] #stage {
+    margin-top: 36px;
+  }
+  #sun-wire .texture-choices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 12px;
+  }
+  #sun-wire .texture-caption {
+    font-size: 12px;
+    min-height: 56px;
+  }
+  #sun-wire .texture-crop {
+    width: 44px;
+  }
+  #sun-wire .texture-3 {
+    width: 50px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #sun-wire .texture-choice {
+    transition: none;
+  }
+}

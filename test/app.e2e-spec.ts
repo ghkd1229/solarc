@@ -34,6 +34,16 @@ describe('App (e2e)', () => {
     return request(app.getHttpServer()).get('/style.css').expect(200);
   });
 
+  it('serves the questionnaire texture image', () => {
+    return request(app.getHttpServer())
+      .get('/assets/textures.png')
+      .expect(200)
+      .expect('Content-Type', /image\/png/)
+      .expect((response) => {
+        expect(response.body.length).toBeGreaterThan(100000);
+      });
+  });
+
   it('preserves the greeting API', () => {
     return request(app.getHttpServer())
       .get('/api/hello')
