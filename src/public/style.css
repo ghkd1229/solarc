@@ -776,3 +776,144 @@ body {
     transition: none;
   }
 }
+/* Fixed Figma canvas: all geometry uses the same 1920 × 1080 scale. */
+body {
+  background: #eeeae4;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+}
+#sun-wire {
+  width: 1920px;
+  max-width: none !important;
+  height: 1080px;
+  flex-shrink: 0;
+  transform: scale(var(--figma-scale, 1));
+  transform-origin: top left;
+  position: absolute;
+  left: var(--figma-left, 0px);
+  top: var(--figma-top, 0px);
+}
+#sun-wire .screen {
+  width: 1920px;
+  height: 1080px !important;
+  min-height: 1080px !important;
+  overflow: hidden;
+}
+#sun-wire[data-page='1'] .screen {
+  padding: 0;
+}
+#sun-wire .hero-brand {
+  width: 731px;
+  max-width: none;
+  top: 274px;
+}
+#sun-wire .hero-tagline {
+  font-size: 25px;
+  font-weight: 400;
+}
+#sun-wire[data-page='1'] footer {
+  top: 778px;
+  width: 506px;
+  max-width: none;
+}
+#sun-wire[data-page='1'] #next {
+  height: 81px;
+  font-size: 35px;
+}
+#sun-wire.figma-question .screen {
+  padding: 108px 195px 35px;
+}
+#sun-wire.figma-question header {
+  top: 540px;
+  left: 60px;
+  width: 1800px;
+  font-size: 25px;
+}
+#sun-wire.figma-question .copy {
+  font-size: 32px;
+  line-height: 1.55;
+}
+#sun-wire.figma-question #title {
+  font-size: 32px;
+}
+#sun-wire[data-page='2'] .copy {
+  margin-top: 42px;
+}
+#sun-wire[data-page='2'] #stage,
+#sun-wire[data-page='3'] #stage {
+  position: absolute;
+  left: 359px;
+  top: 310px;
+  width: 1198px;
+  height: 615px;
+  padding: 0;
+  gap: 30px;
+}
+#sun-wire.figma-question .labels {
+  font-size: 32px;
+  gap: 25px;
+  line-height: 1.8;
+}
+#sun-wire.figma-question input[type='range'] {
+  height: 18px;
+  margin: 12px 0;
+}
+#sun-wire.figma-question input[type='range']::-webkit-slider-thumb {
+  width: 39px;
+  height: 39px;
+}
+#sun-wire.figma-question input[type='range']::-moz-range-thumb {
+  width: 39px;
+  height: 39px;
+}
+#sun-wire[data-page='2'] .horizon {
+  min-height: 0;
+}
+#sun-wire[data-page='2'] .horizon .sun {
+  width: 80px;
+  height: 80px;
+}
+#sun-wire[data-page='3'] .arm {
+  width: 160px;
+  height: 280px;
+}
+#sun-wire.figma-question footer {
+  position: absolute;
+  left: 195px;
+  right: 195px;
+  bottom: 30px;
+  margin: 0;
+  font-size: 20px;
+}
+#sun-wire.figma-question #next {
+  font-size: 22px;
+  padding: 15px 28px;
+}
+#sun-wire.figma-question #selection {
+  font-size: 18px;
+}
+#sun-wire[data-page='4'] .screen {
+  padding: 106px 114px 30px 195px;
+}
+#sun-wire[data-page='4'] #stage {
+  margin-top: 117px;
+  padding: 0;
+}
+#sun-wire .texture-choices {
+  grid-template-columns: 282px 342px 342px 342px;
+  gap: 101px;
+}
+#sun-wire .texture-caption {
+  font-size: 24px;
+  min-height: 74px;
+}
+#sun-wire .texture-crop {
+  width: 109px;
+}
+#sun-wire .texture-3 {
+  width: 126px;
+}
+#sun-wire .texture-choice {
+  gap: 22px;
+}

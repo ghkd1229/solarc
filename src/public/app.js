@@ -320,3 +320,22 @@ function resultMarkup(idx, name, slogan, a) {
   };
   render();
 })();
+
+// Scale the complete design canvas, never its individual elements.
+(() => {
+  const updateCanvas = () => {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    const root = document.documentElement;
+    root.style.setProperty('--figma-scale', String(scale));
+    root.style.setProperty(
+      '--figma-left',
+      `${(window.innerWidth - 1920 * scale) / 2}px`,
+    );
+    root.style.setProperty(
+      '--figma-top',
+      `${(window.innerHeight - 1080 * scale) / 2}px`,
+    );
+  };
+  window.addEventListener('resize', updateCanvas);
+  updateCanvas();
+})();
