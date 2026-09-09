@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "nest build",
+    "build:static": "node scripts/build-static.cjs",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
