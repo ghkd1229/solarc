@@ -1043,9 +1043,12 @@ body {
 }
 #sun-wire[data-page='5'] .copy {
   top: 70px;
-  left: 407px;
+  left: 246px;
   right: auto;
-  width: 1187px;
+  width: 1428px;
+}
+#sun-wire[data-page='5'] #subtitle {
+  white-space: nowrap;
 }
 #sun-wire[data-page='5'] #stage {
   position: absolute;
@@ -1079,6 +1082,12 @@ body {
   max-width: none;
   left: 0.02%;
   top: -50.64%;
+  filter: blur(7.5px);
+  transform: scale(1.025);
+  transform-origin: 38.55% 63.56%;
+  transition:
+    filter 0.45s,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 #sun-wire .reaction-choice span {
   position: absolute;
@@ -1090,6 +1099,23 @@ body {
     Arial,
     sans-serif;
   letter-spacing: -0.48px;
+}
+#sun-wire .reaction-choice span {
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
+}
+#sun-wire .reaction-choice:hover img,
+#sun-wire .reaction-choice:focus-visible img,
+#sun-wire .reaction-choice[aria-pressed='true'] img {
+  filter: blur(0);
+  transform: scale(1.065);
+}
+#sun-wire .reaction-choice:hover span,
+#sun-wire .reaction-choice:focus-visible span,
+#sun-wire .reaction-choice[aria-pressed='true'] span {
+  color: white;
+  text-shadow: 0 2px 12px #0008;
 }
 #sun-wire .reaction-choice[aria-pressed='true'] {
   outline: 5px solid #ff6e53;
@@ -1114,7 +1140,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
   #sun-wire .tan-photo-crop,
   #sun-wire .tan-photo::after,
-  #sun-wire .tan-photo-label {
+  #sun-wire .tan-photo-label,
+  #sun-wire .reaction-choice img,
+  #sun-wire .reaction-choice span {
     transition: none;
   }
 }
