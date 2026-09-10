@@ -544,7 +544,7 @@ body {
 }
 #sun-wire.figma-question #subtitle {
   font-size: inherit;
-  font-weight: 600;
+  font-weight: 400;
   order: 1;
   margin: 0;
   opacity: 1;
@@ -552,7 +552,7 @@ body {
 }
 #sun-wire.figma-question #title {
   font-size: inherit;
-  font-weight: 600;
+  font-weight: 700;
   order: 2;
   width: 100%;
   line-height: 1.55;
@@ -831,11 +831,11 @@ body {
   font-size: 25px;
 }
 #sun-wire.figma-question .copy {
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1.55;
 }
 #sun-wire.figma-question #title {
-  font-size: 32px;
+  font-size: 28px;
 }
 #sun-wire[data-page='2'] .copy {
   margin-top: 42px;
