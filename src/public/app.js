@@ -48,6 +48,13 @@ function resultMarkup(idx, name, slogan, a) {
     ] +
     ' · ' +
     ['가벼운 올인원', '산뜻한 텍스처', '아로마 향기', '쫀쫀한 보습력'][a[2]] +
+    '</p><p>직접 선택한 피부 반응: ' +
+    [
+      '쉽게 붉어지고 따가움',
+      '붉은기 없이 색이 변함',
+      '처음엔 붉어진 뒤 색이 변함',
+      '이미 짙은 베이스 톤',
+    ][a[3]] +
     '</p></article><article class="result"><small>YOUR PAIRING</small><h3>나와 맞는 제품 조합</h3><h4>' +
     products[0] +
     '</h4><p>' +
@@ -69,22 +76,20 @@ function resultMarkup(idx, name, slogan, a) {
     '좋아하는 햇빛의 순간은?',
     "내가 원하는 '완벽한 태닝 피부'는 ?",
     '몸에 바르는 스킨케어 제품을 고를 때, 가장 중요하게 생각하는 것은?',
-    '당신의 태닝 페이스는?',
-    '태닝할 때 가장 중요하게 생각하는 건?',
+    '평소 햇빛을 오래 받았을 때, 내 피부는 어떻게 반응하나요?',
     '나의 선 라이프 유형',
   ];
   const subs = [
-    '다섯 번의 선택으로 발견하는 나만의 선 라이프.',
-    '드래그하고, 고르고, 눌러보세요. 5 QUESTIONS · 4 TYPES',
+    '네 번의 선택으로 발견하는 나만의 선 라이프.',
+    '드래그하고, 고르고, 눌러보세요. 4 QUESTIONS · 4 TYPES',
     'Which moment of sunlight feels most like you?',
     'What is the “perfect tanned skin” I want?',
     'What do you consider most important when choosing a skincare product to apply on the body?',
-    'What’s your tanning pace?',
-    'What matters most while you’re in the sun?',
+    'How does my skin react when it is exposed to sunlight for a long time in everyday life?',
     '취향을 바탕으로 제안하는 스타일',
   ];
   let page = 1,
-    answers = [50, 50, null, 50, null],
+    answers = [50, null, null, null],
     timer = null;
   const labels = [];
   labels.forEach((name, i) => {
@@ -105,9 +110,9 @@ function resultMarkup(idx, name, slogan, a) {
     clearInterval(timer);
     timer = null;
     root.dataset.page = page;
-    root.classList.toggle('figma-question', page >= 2 && page <= 4);
+    root.classList.toggle('figma-question', page >= 2 && page <= 5);
     root.querySelector('header > span').textContent =
-      page >= 2 && page <= 4 ? 'Solarc' : 'SOLARC / FIND YOUR SUN';
+      page >= 2 && page <= 5 ? 'Solarc' : 'SOLARC / FIND YOUR SUN';
     window.scrollTo(0, 0);
     nav
       .querySelectorAll('button')
@@ -117,14 +122,14 @@ function resultMarkup(idx, name, slogan, a) {
     root.querySelector('#eyebrow').textContent =
       page < 2
         ? 'TANNING PERSONALITY TEST'
-        : page < 7
+        : page < 6
           ? 'FIND YOUR SUN'
           : 'YOUR SUN PERSONALITY';
     root.querySelector('#count').textContent =
-      page < 2 ? 'INTRO' : page < 7 ? `${page - 1} / 5` : 'RESULT';
-    if (page >= 2 && page <= 4) {
+      page < 2 ? 'INTRO' : page < 6 ? `${page - 1} / 4` : 'RESULT';
+    if (page >= 2 && page <= 5) {
       root.querySelector('#eyebrow').textContent = `QUESTION ${page - 1}.`;
-      root.querySelector('#count').innerHTML = `0${page - 1} <span>/ 05</span>`;
+      root.querySelector('#count').innerHTML = `0${page - 1} <span>/ 04</span>`;
     }
     root.querySelector('#back').disabled = page === 1;
     root.querySelector('#next').textContent =
@@ -132,13 +137,13 @@ function resultMarkup(idx, name, slogan, a) {
         ? '나의 햇빛 찾기 →'
         : page === 1
           ? 'FOLLOW THE SUN'
-          : page === 6
+          : page === 5
             ? '결과 보기 →'
-            : page === 7
+            : page === 6
               ? '다시 테스트'
               : '다음 →';
     root.querySelector('#next').disabled =
-      (page === 4 || page === 6) && answers[page - 2] === null;
+      page >= 3 && page <= 5 && answers[page - 2] === null;
     root.querySelector('#selection').textContent = '';
     if (page === 1)
       stage.innerHTML =
@@ -188,23 +193,31 @@ function resultMarkup(idx, name, slogan, a) {
       update();
     }
     if (page === 3) {
-      stage.innerHTML =
-        '<div class="tone"><div class="arm" aria-label="희망 톤 미리보기"></div></div><input aria-label="희망 태닝 톤" type="range" min="0" max="100"><div class="labels"><span>글로우 스킨</span><span>골드 브라운</span><span>다크 브론즈</span><span>딥 다크</span></div>';
-      const input = stage.querySelector('input');
-      input.value = answers[1];
-      const update = () => {
-        answers[1] = +input.value;
-        stage.querySelector('.arm').style.background =
-          `hsl(29 40% ${76 - answers[1] * 0.4}%)`;
-        root.querySelector('#selection').textContent = [
-          '글로우 스킨',
-          '골드 브라운',
-          '다크 브론즈',
-          '딥 다크',
-        ][Math.round((answers[1] * 3) / 100)];
-      };
-      input.oninput = update;
-      update();
+      stage.innerHTML = '<div class="tan-photos"></div>';
+      ['글로우 스킨', '골드 브라운', '다크 브론즈', '딥 다크'].forEach(
+        (label, i) => {
+          const button = document.createElement('button');
+          button.className = 'tan-photo';
+          button.innerHTML =
+            '<span class="tan-photo-crop"><img src="/assets/' +
+            (i === 1 ? 'tan-photo-golden.png' : 'tan-photo.png') +
+            '" alt="" width="1241" height="827" style="left:' +
+            -i * 310 +
+            'px"></span><span class="tan-photo-label">' +
+            label +
+            '</span>';
+          button.setAttribute('aria-pressed', answers[1] === (i * 100) / 3);
+          button.onclick = () => {
+            answers[1] = (i * 100) / 3;
+            stage
+              .querySelectorAll('button')
+              .forEach((el, j) => el.setAttribute('aria-pressed', j === i));
+            root.querySelector('#next').disabled = false;
+            root.querySelector('#selection').textContent = label;
+          };
+          stage.firstChild.append(button);
+        },
+      );
     }
     if (page === 4) {
       stage.innerHTML = '<div class="texture-choices"></div>';
@@ -237,60 +250,37 @@ function resultMarkup(idx, name, slogan, a) {
       });
     }
     if (page === 5) {
-      stage.innerHTML =
-        '<button id="hold" class="sun">꾹 누르기</button><input type="range" min="0" max="100" aria-label="선호 페이스"><div class="labels"><span>QUICK</span><span>BALANCED</span><span>SLOW</span></div><small>실제 태닝 시간이 아닌, 선호하는 경험 방식입니다.</small>';
-      const input = stage.querySelector('input'),
-        hold = stage.querySelector('#hold');
-      input.value = answers[3];
-      const update = () => {
-        answers[3] = +input.value;
-        hold.style.transform = `scale(${0.8 + answers[3] / 250})`;
-        root.querySelector('#selection').textContent = [
-          'QUICK',
-          'BALANCED',
-          'SLOW',
-        ][part(answers[3])];
-      };
-      input.oninput = update;
-      hold.onpointerdown = (e) => {
-        hold.setPointerCapture(e.pointerId);
-        input.value = 0;
-        update();
-        timer = setInterval(() => {
-          input.value = Math.min(100, +input.value + 2);
-          update();
-          if (+input.value === 100) clearInterval(timer);
-        }, 60);
-      };
-      hold.onpointerup = hold.onpointercancel = () => clearInterval(timer);
-      update();
-    }
-    if (page === 6) {
-      stage.innerHTML = '<div class="orbs"></div>';
+      stage.innerHTML = '<div class="reaction-choices"></div>';
       [
-        'COMFORT|편하게 즐기는 것',
-        'COLOR|예쁜 태닝 컬러',
-        'CARE|피부 보호와 관리',
-      ].forEach((x, i) => {
-        const b = document.createElement('button');
-        b.className = 'orb';
-        b.innerHTML = x.replace('|', '<br>');
-        b.setAttribute('aria-pressed', answers[4] === i);
-        b.onclick = () => {
-          answers[4] = i;
-          stage.querySelectorAll('button').forEach((other, j) => {
-            other.classList.toggle('dismissed', j !== i);
-            other.setAttribute('aria-pressed', j === i);
-          });
+        '쉽게 붉어지고 따가워져서|관리가 필요한 예민보스 피부',
+        '붉은기 하나 없이 쏙쏙 흡수하며|잘 타는 피부',
+        '처음엔 살짝 붉어졌다가 서서히|까맣게 타는 평범한 피부',
+        '이미 베이스가 깔려 있어|웬만해선 더 안 타는 정체기 피부',
+      ].forEach((label, i) => {
+        const button = document.createElement('button');
+        button.className = 'reaction-choice';
+        button.innerHTML =
+          '<img src="/assets/reaction-' +
+          i +
+          '.png" alt="" width="926" height="521"><span>' +
+          label.replace('|', '<br>') +
+          '</span>';
+        button.setAttribute('aria-pressed', answers[3] === i);
+        button.onclick = () => {
+          answers[3] = i;
+          stage
+            .querySelectorAll('button')
+            .forEach((el, j) => el.setAttribute('aria-pressed', j === i));
           root.querySelector('#next').disabled = false;
-          root.querySelector('#selection').textContent = x.split('|')[0];
+          root.querySelector('#selection').textContent = '선택 완료';
         };
-        stage.firstChild.append(b);
+        stage.firstChild.append(button);
       });
     }
-    if (page === 7) {
-      let d = answers[1] > 66 || (answers[1] >= 34 && answers[4] === 1),
-        r = answers[3] > 66 || (answers[3] >= 34 && answers[2] !== 1);
+    if (page === 6) {
+      // Preference classification only; reported skin reaction is not a diagnosis.
+      const d = answers[1] >= 50,
+        r = answers[2] >= 2;
       const idx = (d ? 2 : 0) + (r ? 1 : 0),
         names = [
           '스마트 실용주의자 · S+E',
@@ -312,9 +302,9 @@ function resultMarkup(idx, name, slogan, a) {
     render();
   };
   root.querySelector('#next').onclick = () => {
-    if (page === 7) {
+    if (page === 6) {
       page = 1;
-      answers = [50, 50, null, 50, null];
+      answers = [50, null, null, null];
     } else page++;
     render();
   };

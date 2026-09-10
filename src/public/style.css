@@ -917,3 +917,204 @@ body {
 #sun-wire .texture-choice {
   gap: 22px;
 }
+/* Four-screen revision — Figma 1343:89; retain the 1920 × 1080 canvas. */
+#sun-wire.figma-question .screen {
+  padding-top: 57px;
+}
+#sun-wire.figma-question .copy {
+  position: absolute;
+  top: 57px;
+  left: 195px;
+  right: 114px;
+  margin: 0;
+}
+#sun-wire.figma-question #eyebrow {
+  width: 100%;
+}
+#sun-wire[data-page='2'] .copy {
+  margin: 0;
+}
+#sun-wire[data-page='3'] #stage {
+  left: 340px;
+  top: 253px;
+  width: 1240px;
+  height: 827px;
+  display: block;
+  padding: 0;
+}
+#sun-wire .tan-photos {
+  display: flex;
+  width: 1240px;
+  height: 827px;
+}
+#sun-wire .tan-photo {
+  position: relative;
+  width: 310px;
+  height: 827px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  background: #ddd;
+  border-radius: 0;
+  color: #5c0e00;
+}
+#sun-wire .tan-photo-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  filter: blur(7.5px);
+  transform: scale(1.025);
+  transition:
+    filter 0.45s,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+#sun-wire .tan-photo img {
+  position: absolute;
+  top: 0;
+  width: 1241px;
+  height: 827px;
+  max-width: none;
+}
+#sun-wire .tan-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.7));
+  transition: opacity 0.45s;
+  pointer-events: none;
+}
+#sun-wire .tan-photo-label {
+  position: absolute;
+  top: 384px;
+  left: 0;
+  width: 100%;
+  font:
+    700 24px 'Fustat',
+    Arial,
+    sans-serif;
+  z-index: 1;
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
+}
+#sun-wire .tan-photo:hover .tan-photo-crop,
+#sun-wire .tan-photo:focus-visible .tan-photo-crop,
+#sun-wire .tan-photo[aria-pressed='true'] .tan-photo-crop {
+  filter: blur(0);
+  transform: scale(1.065);
+}
+#sun-wire .tan-photo:hover,
+#sun-wire .tan-photo:focus-visible,
+#sun-wire .tan-photo[aria-pressed='true'] {
+  color: white;
+  border: 0;
+}
+#sun-wire .tan-photo:hover::after,
+#sun-wire .tan-photo:focus-visible::after,
+#sun-wire .tan-photo[aria-pressed='true']::after {
+  opacity: 0;
+}
+#sun-wire .tan-photo:hover .tan-photo-label,
+#sun-wire .tan-photo[aria-pressed='true'] .tan-photo-label {
+  text-shadow: 0 2px 12px #0008;
+}
+#sun-wire[data-page='4'] #stage {
+  position: absolute;
+  left: 195px;
+  bottom: 0;
+  top: auto;
+  width: 1611px;
+  height: 780px;
+  margin: 0;
+  padding: 0;
+}
+#sun-wire .texture-choices {
+  height: 780px;
+  align-items: end;
+}
+#sun-wire .texture-choice {
+  gap: 48px;
+}
+#sun-wire .texture-caption {
+  white-space: nowrap;
+  word-break: keep-all;
+  letter-spacing: -0.48px;
+  min-height: 74px;
+}
+#sun-wire[data-page='5'] .copy {
+  top: 70px;
+  left: 407px;
+  right: auto;
+  width: 1187px;
+}
+#sun-wire[data-page='5'] #stage {
+  position: absolute;
+  left: 246px;
+  top: 308px;
+  width: 1428px;
+  height: 658px;
+  padding: 0;
+  display: block;
+}
+#sun-wire .reaction-choices {
+  display: grid;
+  grid-template-columns: 714px 714px;
+  grid-template-rows: 329px 329px;
+}
+#sun-wire .reaction-choice {
+  position: relative;
+  width: 714px;
+  height: 329px;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  color: #5c0e00;
+  background: #d9d9d9;
+}
+#sun-wire .reaction-choice img {
+  position: absolute;
+  width: 129.64%;
+  height: 158.34%;
+  max-width: none;
+  left: 0.02%;
+  top: -50.64%;
+}
+#sun-wire .reaction-choice span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 232px;
+  font:
+    600 24px/1.55 'Fustat',
+    Arial,
+    sans-serif;
+  letter-spacing: -0.48px;
+}
+#sun-wire .reaction-choice[aria-pressed='true'] {
+  outline: 5px solid #ff6e53;
+  outline-offset: -5px;
+  border: 0;
+}
+#sun-wire[data-page='3'] footer,
+#sun-wire[data-page='4'] footer {
+  left: 60px;
+  right: 60px;
+  bottom: 24px;
+  pointer-events: none;
+}
+#sun-wire[data-page='3'] footer button,
+#sun-wire[data-page='4'] footer button {
+  pointer-events: auto;
+}
+#sun-wire[data-page='3'] #selection,
+#sun-wire[data-page='4'] #selection {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  #sun-wire .tan-photo-crop,
+  #sun-wire .tan-photo::after,
+  #sun-wire .tan-photo-label {
+    transition: none;
+  }
+}

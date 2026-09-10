@@ -1,4 +1,4 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Res, Param, NotFoundException } from '@nestjs/common';
 import { join } from 'node:path';
 import { AppService } from './app.service';
 
@@ -9,6 +9,28 @@ interface FileResponse {
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Get('assets/:filename')
+  getQuestionAsset(
+    @Param('filename') filename: string,
+    @Res() response: FileResponse,
+  ): void {
+    if (
+      ![
+        'tan-photo.png',
+        'tan-photo-golden.png',
+        'reaction-0.png',
+        'reaction-1.png',
+        'reaction-2.png',
+        'reaction-3.png',
+        'hero-sunset.png',
+        'solarc-logo.svg',
+        'textures.png',
+      ].includes(filename)
+    )
+      throw new NotFoundException();
+    response.sendFile(join(__dirname, 'public', 'assets', filename));
+  }
 
   @Get()
   getPage(@Res() response: FileResponse): void {
