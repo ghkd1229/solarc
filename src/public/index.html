@@ -44,6 +44,74 @@
         </footer>
       </section>
     </div>
-    <script src="/app.js?v=four-questions-1"></script>
+    <section id="ritual" aria-label="Sun care rituals">
+      <div class="ritual-canvas">
+        <div class="ritual-cards">
+          <button
+            class="ritual-card before"
+            aria-label="Before — Scrub 제품 보기"
+            aria-expanded="false"
+          >
+            <span class="ritual-gradient"></span>
+            <span class="ritual-sun"
+              ><img
+                class="glow"
+                src="/assets/ritual-before-glow.svg"
+                alt="" /><img
+                class="halo"
+                src="/assets/ritual-before-halo.svg"
+                alt="" /><img
+                class="core"
+                src="/assets/ritual-before-sun.svg"
+                alt=""
+            /></span>
+            <span class="ritual-label">[ Before ]</span>
+          </button>
+          <div
+            class="ritual-card during"
+            tabindex="0"
+            aria-label="During — 해의 이동"
+          >
+            <span class="ritual-gradient"></span
+            ><span class="ritual-sun"
+              ><img src="/assets/ritual-during.svg" alt="" /></span
+            ><span class="ritual-label">[ During ]</span>
+          </div>
+          <div
+            class="ritual-card after"
+            tabindex="0"
+            aria-label="After — 해의 이동"
+          >
+            <span class="ritual-gradient"></span
+            ><span class="ritual-sun"
+              ><img src="/assets/ritual-after.svg" alt="" /></span
+            ><span class="ritual-label">[ After ]</span>
+          </div>
+        </div>
+        <section class="ritual-product" aria-label="Before — Scrub" hidden>
+          <div class="product-background"></div>
+          <img
+            class="product-horizon"
+            src="/assets/ritual-horizon.svg"
+            alt=""
+          />
+          <button class="product-back" aria-label="Before 카드로 돌아가기">
+            [ Before ]</button
+          ><span class="product-category">Product</span>
+          <img
+            class="scrub-jar"
+            src="/assets/ritual-scrub.png"
+            alt="Solarc Scrub"
+            width="263"
+            height="257"
+          />
+          <h2>Scrub</h2>
+          <p class="product-description">설명 설명</p>
+          <button class="product-cart">+ Add To Cart</button>
+          <p class="cart-feedback" role="status"></p>
+        </section>
+      </div>
+    </section>
+    <script src="/app.js?v=ritual-1"></script>
   </body>
 </html>

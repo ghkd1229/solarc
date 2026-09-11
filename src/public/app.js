@@ -110,6 +110,7 @@ function resultMarkup(idx, name, slogan, a) {
     clearInterval(timer);
     timer = null;
     root.dataset.page = page;
+    document.body.classList.toggle('quiz-active', page !== 1);
     root.classList.toggle('figma-question', page >= 2 && page <= 5);
     root.querySelector('header > span').textContent =
       page >= 2 && page <= 5 ? 'Solarc' : 'SOLARC / FIND YOUR SUN';
@@ -328,4 +329,55 @@ function resultMarkup(idx, name, slogan, a) {
   };
   window.addEventListener('resize', updateCanvas);
   updateCanvas();
+})();
+
+// Expand the selected card into the matching full-size product background.
+(() => {
+  const section = document.querySelector('#ritual');
+  const card = section.querySelector('.before');
+  const product = section.querySelector('.ritual-product');
+  const cards = section.querySelector('.ritual-cards');
+  let moving = false;
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cardClip = 'inset(282px 1242.319px 282px 209px round 56.332px)';
+  const fullClip = 'inset(0px 0px 0px 0px round 0px)';
+  async function transition(open) {
+    if (moving) return;
+    moving = true;
+    product.hidden = false;
+    product.inert = true;
+    if (!open) cards.style.visibility = 'visible';
+    const motion = product.animate(
+      [
+        { clipPath: open ? cardClip : fullClip },
+        { clipPath: open ? fullClip : cardClip },
+      ],
+      {
+        duration: reduced() ? 0 : 850,
+        easing: 'cubic-bezier(.22,1,.36,1)',
+        fill: 'both',
+      },
+    );
+    await motion.finished;
+    motion.cancel();
+    product.hidden = !open;
+    product.inert = !open;
+    cards.style.visibility = open ? 'hidden' : 'visible';
+    card.setAttribute('aria-expanded', String(open));
+    (open ? product.querySelector('.product-back') : card).focus({
+      preventScroll: true,
+    });
+    moving = false;
+  }
+  card.addEventListener('click', () => transition(true));
+  product
+    .querySelector('.product-back')
+    .addEventListener('click', () => transition(false));
+  product.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') transition(false);
+  });
+  product.querySelector('.product-cart').addEventListener('click', () => {
+    product.querySelector('.cart-feedback').textContent =
+      '제품 구매 기능은 준비 중입니다.';
+  });
 })();

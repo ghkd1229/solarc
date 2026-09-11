@@ -1146,3 +1146,287 @@ body {
     transition: none;
   }
 }
+/* Below-hero ritual section, Figma 1452:424. */
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+}
+body:not(.quiz-active) {
+  min-height: 200svh;
+}
+#ritual {
+  position: absolute;
+  top: 100svh;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+}
+.quiz-active #ritual {
+  display: none;
+}
+.ritual-canvas {
+  position: absolute;
+  left: var(--figma-left);
+  top: var(--figma-top);
+  width: 1920px;
+  height: 1080px;
+  transform: scale(var(--figma-scale));
+  transform-origin: top left;
+  background: white;
+  font-family: 'Fustat', Arial, sans-serif;
+}
+.ritual-canvas * {
+  box-sizing: border-box;
+}
+.ritual-cards {
+  display: flex;
+  gap: 48.445px;
+  position: absolute;
+  left: 209px;
+  top: 282px;
+}
+.ritual-card {
+  position: relative;
+  width: 468.681px;
+  height: 516px;
+  border: 1.127px solid #a5a5a1;
+  border-radius: 56.332px;
+  overflow: hidden;
+  padding: 0;
+  isolation: isolate;
+  color: #4c453c;
+  background: #eeebed;
+}
+button.ritual-card {
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+.ritual-label {
+  position: absolute;
+  top: 48.445px;
+  left: 48.445px;
+  z-index: 2;
+  font-size: 28.166px;
+  font-weight: 600;
+}
+.ritual-gradient {
+  position: absolute;
+  inset: -40%;
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.before .ritual-gradient,
+.product-background {
+  background: radial-gradient(
+    ellipse at 10.6% 100%,
+    #f8d170 0%,
+    #f9cca6 27.9%,
+    #edebed 57.2%,
+    #c4e9ee 67.9%,
+    #9be6ef 78.6%,
+    #49e1f2 100%
+  );
+}
+.before .ritual-gradient {
+  inset: 0;
+  width: 150%;
+  height: 150%;
+  transform: translate(-8%, -8%);
+}
+.during .ritual-gradient {
+  background: radial-gradient(
+    ellipse at 56% 100%,
+    #dc452d,
+    #f25d27 34%,
+    #f27d2e 51%,
+    #f29d35 68%,
+    #f9bc5b 84%,
+    #ffdb81
+  );
+  box-shadow: inset 0 32px 57px #ffdfb4;
+}
+.after .ritual-gradient {
+  background: radial-gradient(
+    ellipse at 81% 100%,
+    #dc452d,
+    #ff6e53 41%,
+    #cd6a67 56%,
+    #9c677c 71%,
+    #6a6390 85%,
+    #385fa4
+  );
+}
+.ritual-sun {
+  position: absolute;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ritual-sun img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+.before .ritual-sun {
+  width: 295.179px;
+  height: 295.179px;
+  left: -60.84px;
+  top: 282.79px;
+}
+.before .glow {
+  inset: -57.25%;
+  width: 214.5%;
+  height: 214.5%;
+}
+.before .halo {
+  inset: -28.36%;
+  width: 156.72%;
+  height: 156.72%;
+}
+.during .ritual-sun {
+  width: 432.629px;
+  height: 432.629px;
+  left: -170px;
+  top: 42px;
+}
+.during .ritual-sun img {
+  inset: -23.59%;
+  width: 147.18%;
+  height: 147.18%;
+}
+.after .ritual-sun {
+  width: 432.629px;
+  height: 432.629px;
+  left: -166px;
+  top: -170px;
+}
+.after .ritual-sun img {
+  left: -151.51%;
+  top: -151.51%;
+  width: 403.02%;
+  height: 401.46%;
+}
+.before:is(:hover, :focus-visible) .ritual-sun {
+  transform: translate(300px, -320px);
+}
+.during:is(:hover, :focus-visible) .ritual-sun {
+  transform: translate(380px, 0);
+}
+.after:is(:hover, :focus-visible) .ritual-sun {
+  transform: translate(365px, 410px);
+}
+.before:is(:hover, :focus-visible) .ritual-gradient {
+  transform: translate(12%, -35%);
+}
+.during:is(:hover, :focus-visible) .ritual-gradient {
+  transform: translateX(20%);
+}
+.after:is(:hover, :focus-visible) .ritual-gradient {
+  transform: translate(18%, 22%);
+}
+.ritual-card:focus-visible {
+  outline: 4px solid #ff6e53;
+  outline-offset: -5px;
+}
+.ritual-product {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: white;
+  color: #af9893;
+}
+.ritual-product[hidden] {
+  display: none;
+}
+.product-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+}
+.product-horizon {
+  position: absolute;
+  left: -149px;
+  top: 536px;
+  width: 2218px;
+  height: 1213px;
+  mix-blend-mode: color-dodge;
+}
+.ritual-product button {
+  font:
+    600 25px 'Fustat',
+    Arial,
+    sans-serif;
+  cursor: pointer;
+  color: #af9893;
+}
+.product-back {
+  position: absolute;
+  left: 60px;
+  top: 523px;
+  background: none;
+  padding: 0;
+  border: 0;
+}
+.product-category {
+  position: absolute;
+  right: 60px;
+  top: 523px;
+  font-size: 25px;
+  color: #ff6e53;
+  font-weight: 600;
+}
+.scrub-jar {
+  position: absolute;
+  width: 263px;
+  height: 257px;
+  left: 829px;
+  top: 412px;
+  object-fit: cover;
+  filter: drop-shadow(22px 8px 30px #cbcac666);
+}
+.ritual-product h2 {
+  position: absolute;
+  top: 736px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+}
+.product-description {
+  position: absolute;
+  top: 806px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+}
+.product-cart {
+  position: absolute;
+  left: 869px;
+  top: 918px;
+  width: 183px;
+  height: 39px;
+  border: 1px solid #af9893;
+  border-radius: 48px;
+  background: transparent;
+  padding: 0;
+}
+.cart-feedback {
+  position: absolute;
+  top: 972px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ritual-sun,
+  .ritual-gradient {
+    transition: none;
+  }
+}

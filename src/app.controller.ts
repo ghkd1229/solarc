@@ -26,6 +26,13 @@ export class AppController {
         'hero-sunset.png',
         'solarc-logo.svg',
         'textures.png',
+        'ritual-before-glow.svg',
+        'ritual-before-halo.svg',
+        'ritual-before-sun.svg',
+        'ritual-during.svg',
+        'ritual-after.svg',
+        'ritual-horizon.svg',
+        'ritual-scrub.png',
       ].includes(filename)
     )
       throw new NotFoundException();
