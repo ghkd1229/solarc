@@ -1797,7 +1797,7 @@ body:not(.quiz-active) {
   justify-content: center;
   gap: var(--hero-nav-gap, 101px);
   left: 0;
-  top: 52px;
+  top: 42px;
   width: 1920px;
   z-index: 5;
 }
@@ -1807,7 +1807,7 @@ body:not(.quiz-active) {
   border: 0;
   color: #fff6b2;
   font:
-    600 25px 'Fustat',
+    500 25px 'Fustat',
     sans-serif;
 }
 #sun-wire[data-page='1'] .hero-end {
