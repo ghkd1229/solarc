@@ -1879,3 +1879,29 @@ body {
 #sun-wire[data-page='1'] .hero-end {
   transform: translateY(var(--hero-end-rise, 80px));
 }
+/* Sequential cards settle along a gentle arch, with independent hover zoom. */
+#sun-wire[data-page='1'] .hero-end {
+  opacity: 1;
+  transform: none;
+}
+.hero-end article {
+  transform: translateY(var(--card-rise, 180px));
+  scale: 1;
+  transition: scale 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: auto;
+}
+.hero-end article[inert] {
+  pointer-events: none;
+}
+.hero-end article:is(:hover, :focus-visible) {
+  scale: 1.035;
+}
+.hero-end article:focus-visible {
+  outline: 2px solid #fff6b2;
+  outline-offset: 5px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-end article {
+    transition: none;
+  }
+}

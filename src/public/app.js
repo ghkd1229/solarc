@@ -411,7 +411,21 @@ function resultMarkup(idx, name, slogan, a) {
     root.style.setProperty('--hero-end-opacity', String(end));
     root.style.setProperty('--hero-end-rise', `${(1 - end) * 80}px`);
     root.style.setProperty('--hero-nav-gap', `${101 - 67 * end}px`);
-    root.querySelector('.hero-end').inert = end < 0.95;
+    root.querySelectorAll('.hero-end article').forEach((card, index) => {
+      const reveal = Math.max(
+        0,
+        Math.min(1, (progress - (0.3 + index * 0.1)) / 0.2),
+      );
+      const eased = reveal * reveal * (3 - 2 * reveal);
+      card.style.opacity = String(eased);
+      card.style.setProperty(
+        '--card-rise',
+        `${(1 - eased) * 180 + (index === 1 ? -55 : 25)}px`,
+      );
+      card.inert = reveal < 0.95;
+      card.tabIndex = reveal >= 0.95 ? 0 : -1;
+    });
+    root.querySelector('.hero-end').inert = false;
     if (Number.isFinite(video.duration) && !video.seeking) {
       const time = Math.min(video.duration - 0.04, progress * video.duration);
       if (Math.abs(video.currentTime - time) > 0.025)
