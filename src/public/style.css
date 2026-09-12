@@ -1231,9 +1231,17 @@ button.ritual-card {
 }
 .before .ritual-gradient {
   inset: 0;
-  width: 150%;
-  height: 150%;
-  transform: translate(-8%, -8%);
+  background: radial-gradient(
+    ellipse at var(--light-x, 10.6%) var(--light-y, 100%),
+    #f8d170,
+    #f9cca6 27.9%,
+    #edebed 57.2%,
+    #c4e9ee 67.9%,
+    #49e1f2
+  );
+  transition:
+    --light-x 1.8s ease,
+    --light-y 1.8s ease;
 }
 .during .ritual-gradient {
   background: radial-gradient(
@@ -1275,6 +1283,10 @@ button.ritual-card {
   height: 295.179px;
   left: -60.84px;
   top: 282.79px;
+  filter: blur(22px);
+}
+.before .core {
+  display: none;
 }
 .before .glow {
   inset: -57.25%;
@@ -1289,8 +1301,12 @@ button.ritual-card {
 .during .ritual-sun {
   width: 432.629px;
   height: 432.629px;
-  left: -170px;
-  top: 42px;
+  left: 0;
+  top: 0;
+  offset-path: path('M 25 420 Q 225 80 435 390');
+  offset-distance: 0%;
+  offset-rotate: 0deg;
+  transition: offset-distance 2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .during .ritual-sun img {
   inset: -23.59%;
@@ -1313,13 +1329,14 @@ button.ritual-card {
   transform: translate(300px, -320px);
 }
 .during:is(:hover, :focus-visible) .ritual-sun {
-  transform: translate(380px, 0);
+  offset-distance: 100%;
 }
 .after:is(:hover, :focus-visible) .ritual-sun {
   transform: translate(365px, 410px);
 }
 .before:is(:hover, :focus-visible) .ritual-gradient {
-  transform: translate(12%, -35%);
+  --light-x: 85%;
+  --light-y: 15%;
 }
 .during:is(:hover, :focus-visible) .ritual-gradient {
   transform: translateX(20%);
@@ -1365,10 +1382,12 @@ button.ritual-card {
 .product-back {
   position: absolute;
   left: 60px;
-  top: 523px;
-  background: none;
-  padding: 0;
-  border: 0;
+  top: 60px;
+  background: #ffffffb3;
+  padding: 16px 28px;
+  border: 1px solid #af9893;
+  border-radius: 40px;
+  z-index: 3;
 }
 .product-category {
   position: absolute;
@@ -1429,4 +1448,434 @@ button.ritual-card {
   .ritual-gradient {
     transition: none;
   }
+}
+@property --light-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 10.6%;
+}
+@property --light-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+.product-back:hover,
+.product-back:focus-visible {
+  background: white;
+  color: #4c453c;
+  outline: 2px solid #af9893;
+}
+/* Refined hover choreography; the background always fills its frame. */
+.ritual-card {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+.ritual-card:is(:hover, :focus-visible) {
+  transform: scale(1.035);
+  z-index: 2;
+}
+.before .ritual-gradient {
+  background-size: 100% 100%;
+  transition:
+    --light-x 2.6s cubic-bezier(0.4, 0, 0.2, 1),
+    --light-y 2.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.before:is(:hover, :focus-visible) .ritual-gradient {
+  --light-x: 55%;
+  --light-y: 48%;
+}
+.before .ritual-sun {
+  transition: transform 2.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.during .ritual-sun {
+  left: 18.03px;
+  top: 244.48px;
+  offset-path: none;
+  offset-distance: 0%;
+  transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.during:is(:hover, :focus-visible) .ritual-sun {
+  offset-distance: 0%;
+  transform: translateY(-280px);
+}
+.during:is(:hover, :focus-visible) .ritual-gradient {
+  transform: translateY(-15%);
+}
+.after .ritual-sun {
+  left: -118.25px;
+  top: -175px;
+}
+.after .ritual-gradient {
+  inset: 0;
+  --light-x: 9.44%;
+  --light-y: 0%;
+  background: radial-gradient(
+    ellipse 625px 655px at var(--light-x) var(--light-y),
+    #dc452d,
+    #ff6e53 41.409%,
+    #cd6a67 56.056%,
+    #9c677c 70.704%,
+    #6a6390 85.352%,
+    #51619a 92.676%,
+    #385fa4
+  );
+  box-shadow: inset 0 -10.14px 54.529px 10.14px #ffb5a85c;
+  transition:
+    --light-x 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    --light-y 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.after:is(:hover, :focus-visible) .ritual-gradient {
+  transform: none;
+  --light-x: 85%;
+  --light-y: 80%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ritual-card,
+  .before .ritual-gradient,
+  .before .ritual-sun,
+  .during .ritual-sun,
+  .after .ritual-gradient {
+    transition: none;
+  }
+}
+/* Hover destinations measured from Figma 1453:434 and 1453:443. */
+@property --light-rx {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 756px;
+}
+@property --light-ry {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 699px;
+}
+.before .ritual-gradient {
+  --light-rx: 756px;
+  --light-ry: 699px;
+  background: radial-gradient(
+    ellipse var(--light-rx) var(--light-ry) at var(--light-x) var(--light-y),
+    #f8d170 0%,
+    #f9cca6 27.885%,
+    #edebed 57.212%,
+    #c4e9ee 67.909%,
+    #9be6ef 78.606%,
+    #72e4f1 89.303%,
+    #49e1f2 100%
+  );
+  box-shadow: inset 0 -38.306px 72.105px -1.127px #f0fdffa6;
+  transition:
+    --light-x 2.6s cubic-bezier(0.4, 0, 0.2, 1),
+    --light-y 2.6s cubic-bezier(0.4, 0, 0.2, 1),
+    --light-rx 2.6s cubic-bezier(0.4, 0, 0.2, 1),
+    --light-ry 2.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.before:is(:hover, :focus-visible) .ritual-gradient {
+  --light-x: 89.827%;
+  --light-y: 6.686%;
+  --light-rx: 657px;
+  --light-ry: 652px;
+}
+.before:is(:hover, :focus-visible) .ritual-sun {
+  transform: translate(336.84px, -379.79px);
+}
+.after .ritual-gradient {
+  --light-rx: 636px;
+  --light-ry: 646px;
+  background: radial-gradient(
+    ellipse var(--light-rx) var(--light-ry) at var(--light-x) var(--light-y),
+    #dc452d 0%,
+    #ff6e53 41.409%,
+    #cd6a67 56.056%,
+    #9c677c 70.704%,
+    #6a6390 85.352%,
+    #51619a 92.676%,
+    #385fa4 100%
+  );
+  transition:
+    --light-x 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    --light-y 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    --light-rx 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    --light-ry 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.after:is(:hover, :focus-visible) .ritual-gradient {
+  --light-x: 95.481%;
+  --light-y: 100%;
+  --light-rx: 655px;
+  --light-ry: 660px;
+}
+.after:is(:hover, :focus-visible) .ritual-sun {
+  transform: translate(289.25px, 390px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .before .ritual-gradient,
+  .after .ritual-gradient {
+    transition: none;
+  }
+}
+/* Immediate detail navigation; Figma's soft background mask. */
+.ritual-label {
+  top: 30px;
+}
+.product-background {
+  opacity: 1;
+  background: radial-gradient(
+    ellipse 3096px 1462px at 203.08px 1080px,
+    #f8d170 0%,
+    #f9cca6 27.885%,
+    #edebed 57.212%,
+    #c4e9ee 67.909%,
+    #9be6ef 78.606%,
+    #72e4f1 89.303%,
+    #49e1f2 100%
+  );
+  mask-image: url('/assets/ritual-background-mask.svg');
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  mask-size: 2694.797px 1447.801px;
+  mask-position: -387.398px -114.4px;
+}
+/* Back control and slower, synchronized arrival. */
+.after .ritual-sun,
+.after .ritual-gradient {
+  transition-duration: 2.8s;
+}
+.product-back {
+  left: 60px;
+  top: 83px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.product-back:hover,
+.product-back:focus-visible {
+  background: transparent;
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.product-background {
+  left: -9px;
+  top: 27px;
+  right: auto;
+  bottom: auto;
+  width: 1938px;
+  height: 1080px;
+  mask-size: 2712.797px 1447.801px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .after .ritual-sun,
+  .after .ritual-gradient {
+    transition-duration: 0s;
+  }
+}
+/* Figma 1455:465: layered frame fills, without the obsolete mask. */
+.product-background {
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  mask-image: none;
+  background:
+    radial-gradient(
+      ellipse 1391.1px 782.5px at 960px 752px,
+      #ffffff00 0%,
+      #ffffff00 72.596%,
+      #ffffffc2 100%
+    ),
+    radial-gradient(
+      ellipse 3096.2px 1462px at 203.08px 1080px,
+      #f8d170b3 0%,
+      #f9cca6b3 27.885%,
+      #edebedb3 57.212%,
+      #c4e9eeb3 67.909%,
+      #9be6efb3 78.606%,
+      #72e4f1b3 89.303%,
+      #49e1f2b3 100%
+    ),
+    white;
+}
+.product-horizon {
+  left: -51px;
+  top: 637px;
+  width: 2016px;
+  height: 1011px;
+  pointer-events: none;
+}
+.product-horizon img {
+  position: absolute;
+  left: -5.01%;
+  top: -9.99%;
+  width: 110.02%;
+  height: 119.98%;
+  max-width: none;
+}
+.hero-ink {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+}
+#sun-wire[data-page='1'] .hero-ink {
+  display: block;
+}
+/* Scroll-driven hero, Figma 1457:617 → 1457:678. */
+body:not(.quiz-active) {
+  min-height: 500svh;
+  display: block;
+}
+#hero-scroll {
+  position: relative;
+  height: 400svh;
+}
+.hero-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+#ritual {
+  top: 400svh;
+}
+.quiz-active #hero-scroll {
+  height: 100svh;
+}
+.hero-video,
+.hero-foreground,
+.hero-end-fade {
+  display: none;
+}
+#sun-wire[data-page='1'] .hero-video,
+#sun-wire[data-page='1'] .hero-foreground,
+#sun-wire[data-page='1'] .hero-end-fade {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  object-fit: cover;
+  pointer-events: none;
+}
+#sun-wire[data-page='1'] .hero-video {
+  z-index: 0;
+}
+#sun-wire[data-page='1'] #stage {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  padding: 0;
+  pointer-events: none;
+}
+#sun-wire[data-page='1'] .hero-brand {
+  left: 315px;
+  top: 310px;
+  width: 1293px;
+  height: 559px;
+  transform: none;
+  opacity: var(--hero-logo-opacity, 1);
+}
+#sun-wire[data-page='1'] .hero-logo {
+  width: 1293px;
+  height: 559px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(25%) saturate(688%)
+    hue-rotate(351deg);
+}
+#sun-wire[data-page='1'] .hero-tagline,
+#sun-wire[data-page='1'] footer {
+  display: none;
+}
+.hero-navigation,
+.hero-end {
+  display: none;
+}
+#sun-wire[data-page='1'] .hero-navigation {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: var(--hero-nav-gap, 101px);
+  left: 0;
+  top: 52px;
+  width: 1920px;
+  z-index: 5;
+}
+#sun-wire .hero-navigation button {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #fff6b2;
+  font:
+    600 25px 'Fustat',
+    sans-serif;
+}
+#sun-wire[data-page='1'] .hero-end {
+  position: absolute;
+  display: flex;
+  gap: 60px;
+  left: 131px;
+  top: 270px;
+  z-index: 2;
+  opacity: var(--hero-end-opacity, 0);
+  pointer-events: none;
+}
+.hero-end article {
+  width: 506px;
+  height: 596px;
+  border: 1px solid #fff6b240;
+  border-radius: 35px;
+  background: #fff6b217;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff6b2;
+  font:
+    400 24px/1.35 'Fustat',
+    sans-serif;
+  text-align: center;
+}
+.hero-end article:first-child {
+  background: #fff6b22b;
+}
+.hero-end article p {
+  width: 373px;
+  margin: 0;
+}
+.hero-end article:first-child p {
+  width: 339px;
+}
+.hero-end article:last-child p {
+  width: 411px;
+}
+#sun-wire[data-page='1'] .hero-foreground {
+  z-index: 3;
+}
+#sun-wire[data-page='1'] .hero-end-fade {
+  z-index: 4;
+  background: linear-gradient(to bottom, transparent 70%, #fffad5);
+  opacity: var(--hero-end-opacity, 0);
+}
+body {
+  display: block;
+  width: 100%;
+}
+#hero-scroll,
+.hero-pin {
+  width: 100%;
+}
+#sun-wire {
+  margin: 0;
+}
+#sun-wire[data-page='1'] .hero-video {
+  opacity: 1;
+}
+#sun-wire[data-page='1'] .hero-logo {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(18%) saturate(837%)
+    hue-rotate(343deg) brightness(104%) contrast(101%);
+}
+#sun-wire[data-page='1'] .hero-end {
+  transform: translateY(var(--hero-end-rise, 80px));
 }

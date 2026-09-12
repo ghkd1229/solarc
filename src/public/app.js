@@ -337,37 +337,46 @@ function resultMarkup(idx, name, slogan, a) {
   const card = section.querySelector('.before');
   const product = section.querySelector('.ritual-product');
   const cards = section.querySelector('.ritual-cards');
-  let moving = false;
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const cardClip = 'inset(282px 1242.319px 282px 209px round 56.332px)';
-  const fullClip = 'inset(0px 0px 0px 0px round 0px)';
-  async function transition(open) {
-    if (moving) return;
-    moving = true;
-    product.hidden = false;
-    product.inert = true;
-    if (!open) cards.style.visibility = 'visible';
-    const motion = product.animate(
-      [
-        { clipPath: open ? cardClip : fullClip },
-        { clipPath: open ? fullClip : cardClip },
-      ],
-      {
-        duration: reduced() ? 0 : 850,
-        easing: 'cubic-bezier(.22,1,.36,1)',
-        fill: 'both',
-      },
-    );
-    await motion.finished;
-    motion.cancel();
+  let entrance = [];
+  function transition(open) {
+    entrance.forEach((animation) => animation.cancel());
+    entrance = [];
     product.hidden = !open;
     product.inert = !open;
     cards.style.visibility = open ? 'hidden' : 'visible';
     card.setAttribute('aria-expanded', String(open));
+    if (open && !reduced()) {
+      entrance.push(
+        product.querySelector('.product-horizon').animate(
+          [
+            {
+              top: '818px',
+              opacity: 0.35,
+            },
+            { top: '637px', opacity: 1 },
+          ],
+          { duration: 2400, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' },
+        ),
+      );
+      entrance.push(
+        product.querySelector('.scrub-jar').animate(
+          [
+            { opacity: 0, filter: 'blur(24px)' },
+            { opacity: 1, filter: 'blur(0px)' },
+          ],
+          {
+            delay: 600,
+            duration: 1800,
+            easing: 'cubic-bezier(.4,0,.2,1)',
+            fill: 'both',
+          },
+        ),
+      );
+    }
     (open ? product.querySelector('.product-back') : card).focus({
       preventScroll: true,
     });
-    moving = false;
   }
   card.addEventListener('click', () => transition(true));
   product
@@ -380,4 +389,62 @@ function resultMarkup(idx, name, slogan, a) {
     product.querySelector('.cart-feedback').textContent =
       '제품 구매 기능은 준비 중입니다.';
   });
+})();
+
+// The scroll position controls the video playhead; scrolling back rewinds it.
+(() => {
+  const root = document.querySelector('#sun-wire');
+  const video = root.querySelector('.hero-video');
+  let pending = 0;
+  function update() {
+    pending = 0;
+    if (root.dataset.page !== '1') return;
+    const progress = Math.max(
+      0,
+      Math.min(1, window.scrollY / (window.innerHeight * 3)),
+    );
+    const end = Math.max(0, Math.min(1, (progress - 0.35) / 0.3));
+    root.style.setProperty(
+      '--hero-logo-opacity',
+      String(1 - Math.min(1, progress * 3)),
+    );
+    root.style.setProperty('--hero-end-opacity', String(end));
+    root.style.setProperty('--hero-end-rise', `${(1 - end) * 80}px`);
+    root.style.setProperty('--hero-nav-gap', `${101 - 67 * end}px`);
+    root.querySelector('.hero-end').inert = end < 0.95;
+    if (Number.isFinite(video.duration) && !video.seeking) {
+      const time = Math.min(video.duration - 0.04, progress * video.duration);
+      if (Math.abs(video.currentTime - time) > 0.025)
+        video.currentTime = Math.max(0, time);
+    }
+  }
+  function schedule() {
+    if (!pending) pending = requestAnimationFrame(update);
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  video.addEventListener('loadedmetadata', schedule);
+  video.addEventListener('seeked', schedule);
+  root.querySelector('.hero-navigation').addEventListener('click', (e) => {
+    const target = e.target.dataset.jump;
+    if (target === 'test') {
+      root.querySelector('#next').click();
+      return;
+    }
+    if (target)
+      window.scrollTo({
+        top:
+          target === 'home'
+            ? 0
+            : window.innerHeight * (target === 'about' ? 3 : 4),
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'instant'
+          : 'smooth',
+      });
+  });
+  new MutationObserver(schedule).observe(root, {
+    attributes: true,
+    attributeFilter: ['data-page'],
+  });
+  schedule();
 })();

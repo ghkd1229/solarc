@@ -8,7 +8,7 @@
       name="description"
       content="네 번의 선택으로 발견하는 나만의 햇빛 취향. SOLARC 태닝 성향 테스트."
     />
-    <link rel="stylesheet" href="/style.css?v=four-questions-1" />
+    <link rel="stylesheet" href="/style.css?v=scroll-hero-1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,32 +17,96 @@
     />
   </head>
   <body>
-    <div id="sun-wire" data-page="1">
-      <nav aria-label="화면 선택"></nav>
-      <section class="screen">
-        <img
-          class="hero-background"
-          src="/assets/hero-sunset.png?v=hero-3"
-          alt=""
-          width="1947"
-          height="1096"
-          fetchpriority="high"
-        />
-        <header>
-          <span>SOLARC / FIND YOUR SUN</span><span id="count">INTRO</span>
-        </header>
-        <div class="copy">
-          <small id="eyebrow">TANNING PERSONALITY TEST</small>
-          <h2 id="title">당신의 햇빛에는<br />어떤 취향이 있나요?</h2>
-          <p id="subtitle">네 번의 선택으로 발견하는 나만의 선 라이프.</p>
+    <div id="hero-scroll">
+      <div class="hero-pin">
+        <div id="sun-wire" data-page="1">
+          <nav aria-label="화면 선택"></nav>
+          <section class="screen">
+            <img
+              class="hero-background"
+              src="/assets/hero-start.png"
+              alt=""
+              width="1947"
+              height="1096"
+              fetchpriority="high"
+            />
+
+            <video
+              class="hero-video"
+              src="/assets/hero-scroll.mp4"
+              muted
+              playsinline
+              preload="auto"
+              aria-hidden="true"
+            ></video>
+            <div class="hero-navigation">
+              <button data-jump="home">Home</button
+              ><button data-jump="about">About</button
+              ><button data-jump="product">Product</button
+              ><button data-jump="test">Test</button>
+            </div>
+            <div class="hero-end" aria-label="About SOLARC">
+              <article>
+                <p>RELAXED — Enjoy the Sun</p>
+                <p>
+                  햇빛 아래, 나만의 속도로.<br />잠시 멈추고 햇빛을 즐기는
+                  시간.<br />SOLARC는 태닝을 결과를 위한 과정이 아닌,<br />햇빛
+                  아래에서 보내는 여유로운 순간으로 바라봅니다.
+                </p>
+                <p>
+                  Take your time under the sun.<br />Enjoy the warmth, slow
+                  down, and make the moment yours.
+                </p>
+              </article>
+              <article>
+                <p>CONNECTED — Your Sun Routine</p>
+                <p>
+                  준비부터 회복까지, 하나의 루틴으로.<br />태닝 전 피부를
+                  준비하고, 햇빛을 즐기고, 다시 피부를 편안하게.<br />SOLARC는
+                  햇빛을 만나는 모든 순간을 자연스럽게 연결합니다.
+                </p>
+                <p>
+                  Before. Under. After.<br />One continuous routine designed
+                  around your time in the sun.
+                </p>
+              </article>
+              <article>
+                <p>AUTHENTIC — Live Your Way</p>
+                <p>
+                  정해진 태닝 대신, 나다운 태닝.<br />원하는 피부 톤도, 햇빛을
+                  즐기는 시간도, 필요한 루틴도 모두 다르니까.<br />SOLARC는
+                  하나의 방식을 제안하기보다<br />각자의 취향과 리듬에 맞는 태닝
+                  경험을 제안합니다.
+                </p>
+                <p>
+                  There’s no one way to enjoy the sun.<br />Find your tone, your
+                  routine, and your way.
+                </p>
+              </article>
+            </div>
+            <img
+              class="hero-foreground"
+              src="/assets/hero-foreground.png"
+              alt=""
+            />
+            <div class="hero-end-fade"></div>
+            <header>
+              <span>SOLARC / FIND YOUR SUN</span><span id="count">INTRO</span>
+            </header>
+            <div class="copy">
+              <small id="eyebrow">TANNING PERSONALITY TEST</small>
+              <h2 id="title">당신의 햇빛에는<br />어떤 취향이 있나요?</h2>
+              <p id="subtitle">네 번의 선택으로 발견하는 나만의 선 라이프.</p>
+            </div>
+            <div id="stage"></div>
+            <footer>
+              <button id="back">이전</button
+              ><span id="selection" aria-live="polite"></span
+              ><button id="next">나의 햇빛 찾기 →</button>
+            </footer>
+          </section>
         </div>
-        <div id="stage"></div>
-        <footer>
-          <button id="back">이전</button
-          ><span id="selection" aria-live="polite"></span
-          ><button id="next">나의 햇빛 찾기 →</button>
-        </footer>
-      </section>
+      </div>
     </div>
     <section id="ritual" aria-label="Sun care rituals">
       <div class="ritual-canvas">
@@ -90,14 +154,12 @@
         </div>
         <section class="ritual-product" aria-label="Before — Scrub" hidden>
           <div class="product-background"></div>
-          <img
-            class="product-horizon"
-            src="/assets/ritual-horizon.svg"
-            alt=""
-          />
+          <div class="product-horizon">
+            <img src="/assets/ritual-horizon.svg" alt="" />
+          </div>
           <button class="product-back" aria-label="Before 카드로 돌아가기">
-            [ Before ]</button
-          ><span class="product-category">Product</span>
+            Back
+          </button>
           <img
             class="scrub-jar"
             src="/assets/ritual-scrub.png"
@@ -112,6 +174,6 @@
         </section>
       </div>
     </section>
-    <script src="/app.js?v=ritual-1"></script>
+    <script src="/app.js?v=scroll-hero-1"></script>
   </body>
 </html>

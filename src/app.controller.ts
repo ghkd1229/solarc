@@ -24,6 +24,10 @@ export class AppController {
         'reaction-2.png',
         'reaction-3.png',
         'hero-sunset.png',
+        'hero-sky.png',
+        'hero-scroll.mp4',
+        'hero-start.png',
+        'hero-foreground.png',
         'solarc-logo.svg',
         'textures.png',
         'ritual-before-glow.svg',
@@ -32,6 +36,7 @@ export class AppController {
         'ritual-during.svg',
         'ritual-after.svg',
         'ritual-horizon.svg',
+        'ritual-background-mask.svg',
         'ritual-scrub.png',
       ].includes(filename)
     )
